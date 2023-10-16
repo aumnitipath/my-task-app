@@ -1,11 +1,15 @@
 import React from "react";
 import "./Item.css";
 
-const Item = () => {
+const Item = ({ data }) => {
   return (
-    <>
-      <p>รายการที่ 1</p>
-    </>
+    <div className="list-item">
+      <p className="title">{data.title}</p>
+      <div className="button-container">
+        <button className="btn">ลบ</button>
+        <button className="btn">แก้ไข</button>
+      </div>
+    </div>
   );
 };
 

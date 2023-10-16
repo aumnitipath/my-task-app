@@ -4,7 +4,7 @@ import "./AddForm.css";
 const AddForm = () => {
   return (
     <>
-      <h2>App Management</h2>
+      <h2>Todo List</h2>
       <form>
         <div className="form-control">
           <input className="text-input" type="text" />
