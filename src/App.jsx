@@ -11,6 +11,13 @@ function App() {
     { id: 3, title: "Study" },
   ]);
 
+  const deleteTask = (id) => {
+    const result = task.filter((item) => {
+      return item.id !== id;
+    });
+    setTask(result);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -18,7 +25,7 @@ function App() {
         <AddForm />
         <section>
           {task.map((item) => {
-            return <Item key={item.id} data={item}/>;
+            return <Item key={item.id} data={item} deleteTask={deleteTask} />;
           })}
         </section>
       </div>

@@ -1,12 +1,17 @@
 import React from "react";
 import "./Item.css";
 
-const Item = ({ data }) => {
+const Item = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const { data, deleteTask } = props;
+
   return (
     <div className="list-item">
       <p className="title">{data.title}</p>
       <div className="button-container">
-        <button className="btn">ลบ</button>
+        <button onClick={() => deleteTask(data.id)} className="btn">
+          ลบ
+        </button>
         <button className="btn">แก้ไข</button>
       </div>
     </div>
