@@ -3,7 +3,7 @@ import "./Item.css";
 
 const Item = (props) => {
   // eslint-disable-next-line react/prop-types
-  const { data, deleteTask } = props;
+  const { data, deleteTask, editTask } = props;
 
   return (
     <div className="list-item">
@@ -12,7 +12,9 @@ const Item = (props) => {
         <button onClick={() => deleteTask(data.id)} className="btn">
           ลบ
         </button>
-        <button className="btn">แก้ไข</button>
+        <button className="btn" onClick={() => editTask(data.id)}>
+          แก้ไข
+        </button>
       </div>
     </div>
   );
