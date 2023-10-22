@@ -24,3 +24,14 @@ header {
   cursor: pointer;
   margin-left: 10px;
 }
+
+/* .bg {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(67, 111, 181, 1) 0%,
+    rgba(184, 200, 203, 1) 0%,
+    rgba(72, 99, 99, 1) 100%
+  );
+} */

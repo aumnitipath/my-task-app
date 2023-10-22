@@ -1,4 +1,7 @@
 import React from "react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { RiSwitchFill } from "react-icons/ri";
+import { RxSwitch } from "react-icons/rx";
 import "./Header.css";
 
 const Header = ({ theme, setTheme }) => {
@@ -13,15 +16,15 @@ const Header = ({ theme, setTheme }) => {
   };
 
   return (
-    <header>
+    <header className="bg">
       <div className="logo">
         <span>Task Management</span>
       </div>
       <div className="theme-container">
         {/* theme === false ? (if(false:"Light"))  */}
-        <span>{!theme ? "Light" : "Dark"}</span>
+        <span onClick={toggleTheme}>{!theme ? "Light Mode" : "Dark Mode"}</span>
         <span className="icon" onClick={toggleTheme}>
-          Switch Mode
+          {theme === false ? <MdLightMode /> : <MdDarkMode />}
         </span>
       </div>
     </header>
