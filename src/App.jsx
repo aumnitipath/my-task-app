@@ -1,27 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import AddForm from "./components/AddForm";
 import Header from "./components/Header";
 import Item from "./components/Item";
 
 function App() {
-  const [task, setTask] = useState([
-    { id: 1, title: "Fix Bug" },
-    { id: 2, title: "Study" },
-  ]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("task")) || []
+  );
   const [title, setTitle] = useState("");
   const [editId, setEditId] = useState(null);
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("task", JSON.stringify(tasks));
+  }, [tasks]);
 
   const deleteTask = (id) => {
-    const result = task.filter((item) => {
+    const result = tasks.filter((item) => {
       return item.id !== id;
     });
-    setTask(result);
+    setTasks(result);
   };
 
   const editTask = (id) => {
     setEditId(id);
-    const result = task.find((item) => item.id === id);
+    const result = tasks.find((item) => item.id === id);
     setTitle(result.title);
   };
 
@@ -33,7 +37,7 @@ function App() {
     } else if (editId) {
       //คือ if(editId !== null)
       // update ข้อมูล
-      const updateTask = task.map((item) => {
+      const updateTask = tasks.map((item) => {
         //รายการใดมีรหัสตรงกับรหัสแก้ไข
         if (item.id === editId) {
           //ให้คงสภาพเดิมและให้ไปเปลี่ยนแปลง state title
@@ -41,7 +45,7 @@ function App() {
         }
         return item;
       });
-      setTask(updateTask);
+      setTasks(updateTask);
       setEditId(null);
       setTitle("");
     } else {
@@ -50,14 +54,14 @@ function App() {
         id: Math.floor(Math.random() * 1000),
         title,
       };
-      setTask([...task, newTask]);
+      setTasks([...tasks, newTask]);
       setTitle("");
     }
   };
 
   return (
     <div className="App">
-      <Header />
+      <Header theme={theme} setTheme={setTheme} />
       <div className="container">
         <AddForm
           title={title}
@@ -66,7 +70,7 @@ function App() {
           editId={editId}
         />
         <section>
-          {task.map((item) => {
+          {tasks.map((item) => {
             return (
               <Item
                 key={item.id}
